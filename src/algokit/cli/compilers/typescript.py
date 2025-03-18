@@ -5,7 +5,7 @@ from typing import Any
 
 import click
 
-from algokit.core.compilers.typescript import find_valid_puyats_command
+from algokit.core.compilers.typescript import PUYATS_COMPILE_COMMAND, find_valid_puyats_command
 from algokit.core.proc import run
 from algokit.core.utils import extract_semantic_version
 
@@ -18,11 +18,20 @@ def invoke_puyats(context: click.Context, puyats_args: list[str]) -> None:
 
     puyats_command = find_valid_puyats_command(version)
 
-    run_result = run(
-        [
+    command = [
+        *puyats_command,
+        PUYATS_COMPILE_COMMAND,
+        *puyats_args,
+    ]
+
+    if "--version" in puyats_args:
+        command = [
             *puyats_command,
-            *puyats_args,
-        ],
+            "--version",
+        ]
+
+    run_result = run(
+        command,
         env=(dict(os.environ) | {"NO_COLOR": "1"}) if context.color is False else None,
     )
     click.echo(run_result.output)

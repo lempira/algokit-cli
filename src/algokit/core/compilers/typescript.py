@@ -71,7 +71,7 @@ def _find_puyats_command(version: str | None) -> list[str]:
         try:
             puyats_version_result = run([*project_result, "--version"])
             if puyats_version_result.exit_code == 0:
-                return [*project_result, PUYATS_COMPILE_COMMAND]
+                return project_result
         except OSError:
             pass  # In case of path/permission issues, continue to the next candidate
 
@@ -81,17 +81,12 @@ def _find_puyats_command(version: str | None) -> list[str]:
         try:
             puyats_version_result = run([*global_result, "--version"])
             if puyats_version_result.exit_code == 0:
-                return [*global_result, PUYATS_COMPILE_COMMAND]
+                return global_result
         except OSError:
             pass  # In case of path/permission issues, fall back to npx
 
     # When not installed or available, run via npx
-    return [
-        *npx_command,
-        "-y",
-        f"{PUYATS_NPM_PACKAGE}{'@' + version if version is not None else ''}",
-        PUYATS_COMPILE_COMMAND,
-    ]
+    return [*npx_command, "-y", f"{PUYATS_NPM_PACKAGE}{'@' + version if version is not None else ''}"]
 
 
 def _get_candidate_puyats_commands() -> Iterator[list[str]]:
