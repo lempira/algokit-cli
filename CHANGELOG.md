@@ -2,6 +2,18 @@
 
 <!--next-version-placeholder-->
 
+## v300.0.0 (2025-03-19)
+
+### Chore
+
+* Bumped major version
+
+## v2.7.0-beta.1 (2025-03-19)
+
+### Feature
+
+* Updated manual bump workflow ([`c67f203`](https://github.com/lempira/algokit-cli/commit/c67f203ef38eba4070e2c49410c84127e2d74ec8))
+
 ## v2.6.0 (2025-03-19)
 
 ### Feature
