@@ -263,7 +263,7 @@ Please include this output, if you want to populate this message in your clipboa
 
 Per the above output, the doctor command output is a helpful tool if you need to ask for support or [raise an issue](https://github.com/algorandfoundation/algokit-cli/issues/new).
 
-## Troubleshooting
+### Troubleshooting
 
 This section addresses specific edge cases and issues that some users might encounter when interacting with the CLI. The following table provides solutions to known edge cases:
 
